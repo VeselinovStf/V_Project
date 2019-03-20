@@ -1,5 +1,7 @@
 ﻿using ES.Data.Core;
 using ES.Data.Identity;
+using ES.EstateServices;
+using ES.EstateServices.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +43,7 @@ namespace ES.Web
         private void ConfigureApplicationServicess(IServiceCollection services)
         {
             // Add new App servicess
-            // services.AddScoped<IAbstraction, Implementation>();
+            services.AddTransient<IEstateService, EstateService>();
         }
 
         private void ConfigureMvcSettings(IServiceCollection services)
