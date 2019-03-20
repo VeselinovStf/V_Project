@@ -72,3 +72,58 @@
 ### 2. Planing ###
 
 #### 1. Alpha Version ####
+
+#### BUILD 01 ####
+
+1. GOAL - Create home page that displays all public estates that are set to sell or rent ( give option for filtering sell/ renting ). Create pages for dealers and owners, about us and contact. After user click on estate, dealer or owner he can see complete details only if is registered. Create register as Seaker functionality. As Seeker the user can see complete details and can make an offer or contact with the estate owner/renter or dealer
+
+##### B01.Public Part #####
+
+1. Home Page - not registered
+	1. Not registered user are going to be able to see all public estates
+	2. Buy selecting from menu user can go to all estates, dealers list, owners list ( if the are public)
+	3. User can click on estate or dealer ore owner and can see public details
+	4. User can't make contact ore save to favorite if he is not registered
+	5. User is prompt to Register or login if he want to see details
+	5. User can see About / Contact /Register/ Login pages and can go to them
+
+##### B01.Private Part #####
+
+1. Register AS
+	1. Seaker - user want's to only look, buy and contact owner or dealer	
+		
+### 3. B01.Requirements Analysis ###
+
+1. Entities - Estate, Dealer, Owner, User
+2. Display all public Estate, Dealer, Owner in separated pages
+3. If user try to contact ore see more details is send to log in or register
+4. Register gives options for selecting role
+	
+### 4. B01.Design ###
+
+##### B01.Initial Start Design #####
+
+0. Creating Folder Structure
+1. Presentation layer Asp .Net Core 2.2 MVC 
+2. Data Base Layer - Entity Framework and MS SQL Database
+3. Identity System - Asp .NET Core Identity 2.2
+4. Models - Estate, Dealer, Owner, User ( note for IsDeleted and IsPublic Fields )
+5. Filling DB with test data for displaying in Home page
+6. Setting up _Layeaut to use Menu Component for Seaker role 
+7. When user is registered he must get role - Seaker
+8. Find a way to make private chat with Seaker-Seler - build messaging system
+
+#############################################
+
+#### BUILD 02 ####
+
+##### B02.Private Part #####
+
+1. Register AS	
+	2. Personal - Seaker + Personal account
+	3. Bisuness - Owner
+	4. Business - Dealer
+		
+### 4. B02.Design ###
+
+### 5. Testing ###
