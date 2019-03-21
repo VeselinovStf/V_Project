@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ES.EstateServices.DTOs
+namespace ES.CustomTagHelpers.Models
 {
     public class PagingInfo
     {

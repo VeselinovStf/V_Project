@@ -1,4 +1,5 @@
-﻿using ES.Data.Core;
+﻿using ES.CustomTagHelpers.Models;
+using ES.Data.Core;
 using ES.EstateServices.Abstract;
 using ES.EstateServices.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,10 @@ namespace ES.EstateServices
                     .Take(this.PageSize)
                     .ToListAsync();
 
-            var queryEstatesCount = await this._DbContext.Estates.CountAsync();
+            var queryEstatesCount = await this._DbContext
+                .Estates
+                .Where(e => !e.IsDeleted && e.IsPublic)
+                .CountAsync();
 
             var serviceDto = new EstatesListDto()
             {

@@ -4,30 +4,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                Id
-            </td>
-            <td>
-                Description
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var estate in Model.Estates)
-        {
-        <tr>
-            <td>
-                @estate.Id
-            </td>
-            <td>
-                @estate.Description
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+@foreach (var estate in Model.Estates)
+{
+    <partial name="_PublicEstates" model="estate" />
+}
 
-<div page-model="@Model.PagingInfo" page-action="Index"></div>
+<div page-model="@Model.PagingInfo" page-action="Index" 
+    page-classes-enabled="true"     
+    page-class="btn" 
+    page-class-normal="btn-secondary"     
+    page-class-selected="btn-primary" 
+    class="btn-group pull-right m-1">
+</div>

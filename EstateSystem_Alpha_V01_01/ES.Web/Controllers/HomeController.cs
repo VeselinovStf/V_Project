@@ -1,6 +1,8 @@
-﻿using ES.EstateServices.Abstract;
+﻿using ES.CustomTagHelpers.Models;
+using ES.EstateServices.Abstract;
 using ES.Web.Models;
 using ES.Web.ViewModels.PublicArea.Estates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ES.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IEstateService _EstateService;
@@ -28,7 +31,7 @@ namespace ES.Web.Controllers
                     Id = e.Id,
                     Description = e.Description
                 }),
-                PagingInfo = new ViewModels.Paging.PagingInfo()
+                PagingInfo = new PagingInfo()
                 {
                     CurrentPage = serviceModel.PagingInfo.CurrentPage,
                     ItemsPerPage = serviceModel.PagingInfo.ItemsPerPage,

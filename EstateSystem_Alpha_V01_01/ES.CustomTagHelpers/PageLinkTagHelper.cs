@@ -1,15 +1,12 @@
-﻿using ES.Web.ViewModels.Paging;
+﻿using ES.CustomTagHelpers.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ES.Web.Infrastructure.CustomTagHelpers
+namespace ES.CustomTagHelpers
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
@@ -29,6 +26,13 @@ namespace ES.Web.Infrastructure.CustomTagHelpers
 
         public string PageAction { get; set; }
 
+        public bool PageClassesEnabled { get; set; } = false;
+
+        public string PageClass { get; set; }
+
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
 
@@ -38,7 +42,13 @@ namespace ES.Web.Infrastructure.CustomTagHelpers
             {
                 TagBuilder tag = new TagBuilder("a");
                 tag.Attributes["href"] = urlHelper.Action(PageAction, new { estatesPage = i });
-                tag.InnerHtml.Append(i.ToString()); result.InnerHtml.AppendHtml(tag);
+                if (PageClassesEnabled)
+                {
+                    tag.AddCssClass(PageClass);
+                    tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
+                }
+                tag.InnerHtml.Append(i.ToString());
+                result.InnerHtml.AppendHtml(tag);
             }
 
             output.Content.AppendHtml(result.InnerHtml);
