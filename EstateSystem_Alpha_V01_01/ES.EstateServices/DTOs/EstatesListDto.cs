@@ -7,8 +7,7 @@ namespace ES.EstateServices.DTOs
 {
     public class EstatesListDto
     {
-        public IEnumerable<PublicEstateDto> Estates { get; set; }
-        //TODO: FIX PAGING INFO
+        public IEnumerable<PublicEstateDto> Estates { get; set; }      
         public PagingInfo PagingInfo { get; set; }
     }
 }
