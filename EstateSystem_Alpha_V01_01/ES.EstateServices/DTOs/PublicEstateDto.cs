@@ -6,6 +6,7 @@ namespace ES.EstateServices.DTOs
 {
     public class PublicEstateDto
     {
+        public string Id { get; set; }
         public string  Description { get; set; }
     }
 }

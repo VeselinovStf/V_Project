@@ -7,6 +7,7 @@ namespace ES.Web.ViewModels.PublicArea.Estates
 {
     public class PublicEstateViewModel
     {
+        public string Id { get; set; }
         public string Description { get; set; }
     }
 }

@@ -17,14 +17,25 @@ namespace ES.Web.Controllers
             _EstateService = _estateService ?? throw new System.ArgumentNullException(nameof(_estateService));
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int estatesPage = 1)
         {
-            var serviceModel = await this._EstateService.GetPublicEstatesAsync();
+            var serviceModel = await this._EstateService.GetPublicEstatesAsync(estatesPage);
 
-            var model = serviceModel.Select(e => new PublicEstateViewModel()
+            var model = new EstatesListViewModel()
             {
-                Description = e.Description
-            });
+                Estates = serviceModel.Estates.Select(e => new PublicEstateViewModel()
+                {
+                    Id = e.Id,
+                    Description = e.Description
+                }),
+                PagingInfo = new ViewModels.Paging.PagingInfo()
+                {
+                    CurrentPage = serviceModel.PagingInfo.CurrentPage,
+                    ItemsPerPage = serviceModel.PagingInfo.ItemsPerPage,
+                    TotalItems = serviceModel.PagingInfo.TotalItems
+                }
+            };
+           
 
             return View(model);
         }

@@ -12,23 +12,40 @@ namespace ES.EstateServices
     public class EstateService : IEstateService
     {
         private readonly EstateSystemDbContext _DbContext;
+        public int PageSize = 3;
 
         public EstateService(EstateSystemDbContext _dbContext)
         {
             _DbContext = _dbContext ?? throw new ArgumentNullException(nameof(_dbContext));
         }
 
-        public async Task<IEnumerable<PublicEstateDto>> GetPublicEstatesAsync()
+        public async Task<EstatesListDto> GetPublicEstatesAsync(int estatesPage)
         {
-            var query = await this._DbContext.Estates
-                .Where(e => !e.IsDeleted && e.IsPublic)
-                .ToListAsync();
+            var queryEstates = await this._DbContext
+                    .Estates
+                    .Where(e => !e.IsDeleted && e.IsPublic)
+                    .OrderBy(e => e.Id)
+                    .Skip((estatesPage - 1) * this.PageSize)
+                    .Take(this.PageSize)
+                    .ToListAsync();
 
-            var serviceDto = query.Select(e => new PublicEstateDto()
+            var queryEstatesCount = await this._DbContext.Estates.CountAsync();
+
+            var serviceDto = new EstatesListDto()
             {
-                Description = e.Description
-            });
-
+                Estates = queryEstates.Select(e => new PublicEstateDto()
+                    {
+                        Id = e.Id,
+                        Description = e.Description
+                    }),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = estatesPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = queryEstatesCount
+                }
+            };
+          
             return serviceDto;
         }
     }

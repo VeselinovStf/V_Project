@@ -8,6 +8,6 @@ namespace ES.EstateServices.Abstract
 {
     public interface IEstateService
     {
-        Task<IEnumerable<PublicEstateDto>> GetPublicEstatesAsync();
+        Task<EstatesListDto> GetPublicEstatesAsync(int estatesPage);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PublicEstateViewModel>
+﻿@model EstatesListViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,18 +8,26 @@
     <thead>
         <tr>
             <td>
+                Id
+            </td>
+            <td>
                 Description
             </td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var estate in Model)
+        @foreach (var estate in Model.Estates)
         {
-            <tr>
-                <td>
-                    @estate.Description
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @estate.Id
+            </td>
+            <td>
+                @estate.Description
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+
+<div page-model="@Model.PagingInfo" page-action="Index"></div>
