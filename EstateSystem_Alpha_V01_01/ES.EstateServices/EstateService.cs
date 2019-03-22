@@ -40,7 +40,8 @@ namespace ES.EstateServices
                 Estates = queryEstates.Select(e => new PublicEstateDto()
                     {
                         Id = e.Id,
-                        Description = e.Description
+                        Description = e.Description,
+                        ImageAddres = e.ImageAddres
                     }),
                 PagingInfo = new PagingInfo
                 {

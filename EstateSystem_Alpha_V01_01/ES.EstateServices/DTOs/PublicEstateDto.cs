@@ -8,5 +8,7 @@ namespace ES.EstateServices.DTOs
     {
         public string Id { get; set; }
         public string  Description { get; set; }
+
+        public string ImageAddres { get; set; }
     }
 }

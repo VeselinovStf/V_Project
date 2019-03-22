@@ -29,7 +29,8 @@ namespace ES.Web.Controllers
                 Estates = serviceModel.Estates.Select(e => new PublicEstateViewModel()
                 {
                     Id = e.Id,
-                    Description = e.Description
+                    Description = e.Description,
+                    ImageAddress = e.ImageAddres
                 }),
                 PagingInfo = new PagingInfo()
                 {

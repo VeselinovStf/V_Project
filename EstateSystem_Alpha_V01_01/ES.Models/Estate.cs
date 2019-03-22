@@ -29,7 +29,7 @@ namespace ES.Models
         
         public int Capacity { get; set; }
 
-        public byte[] Image { get; set; }
+        public string ImageAddres { get; set; }
 
 
     }

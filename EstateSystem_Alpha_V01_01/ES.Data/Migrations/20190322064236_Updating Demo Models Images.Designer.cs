@@ -4,14 +4,16 @@ using ES.Data.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ES.Data.Migrations
 {
     [DbContext(typeof(EstateSystemDbContext))]
-    partial class EstateSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322064236_Updating Demo Models Images")]
+    partial class UpdatingDemoModelsImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

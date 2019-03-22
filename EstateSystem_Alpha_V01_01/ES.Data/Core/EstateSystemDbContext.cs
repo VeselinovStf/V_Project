@@ -54,7 +54,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id01.jpg"
                },
                new Estate()
                {
@@ -70,7 +71,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id02.jpg"
                },
                new Estate()
                {
@@ -86,7 +88,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id03.jpg"
                },
                new Estate()
                {
@@ -102,7 +105,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id04.jpg"
                },
                new Estate()
                {
@@ -118,7 +122,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id05.jpg"
                },
                new Estate()
                {
@@ -134,7 +139,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id06.jpg"
                },
                new Estate()
                {
@@ -150,7 +156,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id07.jpg"
                },
                new Estate()
                {
@@ -166,7 +173,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id08.jpg"
                },
                new Estate()
                {
@@ -182,7 +190,8 @@ namespace ES.Data.Core
                     Size = 2000,
                     StreetAddress = 66,
                     IsSellable = false,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ImageAddres = "id09.jpg"
                }
 
             };

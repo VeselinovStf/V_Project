@@ -4,14 +4,16 @@ using ES.Data.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ES.Data.Migrations
 {
     [DbContext(typeof(EstateSystemDbContext))]
-    partial class EstateSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322063519_Updating Image saving process")]
+    partial class UpdatingImagesavingprocess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id01.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -140,7 +141,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id02.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -160,7 +160,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id03.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -180,7 +179,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id04.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -200,7 +198,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id05.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -220,7 +217,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id06.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -240,7 +236,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id07.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -260,7 +255,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id08.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
@@ -280,7 +274,6 @@ namespace ES.Data.Migrations
                             Country = "Bulgaria",
                             DeletedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Normal House",
-                            ImageAddres = "id09.jpg",
                             IsDeleted = false,
                             IsPublic = true,
                             IsRentable = false,
