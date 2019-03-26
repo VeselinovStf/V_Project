@@ -75,21 +75,33 @@ namespace ES.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Capacity");
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnName("City")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("Country");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnName("Country")
+                        .HasMaxLength(255);
 
                     b.Property<DateTime>("DeletedOn");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnName("Description")
+                        .HasMaxLength(1000);
 
-                    b.Property<string>("ImageAddres");
+                    b.Property<string>("ImageAddres")
+                        .IsRequired();
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<bool>("IsPublic");
+                    b.Property<bool>("IsPublic")
+                        .HasColumnName("Public");
 
                     b.Property<bool>("IsRentable");
 
@@ -97,15 +109,24 @@ namespace ES.Data.Migrations
 
                     b.Property<DateTime>("ModifiedOn");
 
-                    b.Property<decimal>("RentingPrice");
+                    b.Property<decimal>("RentingPrice")
+                        .HasColumnType("money");
 
-                    b.Property<decimal>("SellingPrice");
+                    b.Property<decimal>("SellingPrice")
+                        .HasColumnType("money");
 
-                    b.Property<decimal>("Size");
+                    b.Property<decimal>("Size")
+                        .HasColumnName("Size")
+                        .HasColumnType("decimal");
 
-                    b.Property<string>("Street");
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnName("Street")
+                        .HasMaxLength(255);
 
-                    b.Property<int>("StreetAddress");
+                    b.Property<int>("StreetAddress")
+                        .HasColumnName("Street Address")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

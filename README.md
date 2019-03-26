@@ -73,7 +73,10 @@
 
 #### 1. Alpha Version ####
 
-#### BUILD 01 ####
+1. Project analysis - the project will be split in two main cores.
+	1. Social Network Core - consist of Estate/Dealer/Owner social network like presentation
+	2. Management Core - consist of management for Personal/Rent/Owner/Dealer management  
+#### BUILD 01 Social Network CORE ####
 
 1. GOAL - Create home page that displays all public estates that are set to sell or rent ( give option for filtering sell/ renting ). Create pages for dealers and owners, about us and contact. After user click on estate, dealer or owner he can see complete details only if is registered. Create register as Seaker functionality. As Seeker the user can see complete details and can make an offer or contact with the estate owner/renter or dealer
 
