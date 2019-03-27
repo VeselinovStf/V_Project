@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FMS.Data\FMS.Data.csproj" />
+    <ProjectReference Include="..\FMS.RoleService\FMS.RoleService.csproj" />
   </ItemGroup>
 
  

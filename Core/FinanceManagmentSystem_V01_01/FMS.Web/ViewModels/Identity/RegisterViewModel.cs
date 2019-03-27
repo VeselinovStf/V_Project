@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FMS.Web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FMS.Web.ViewModels.Identity
 {
@@ -19,5 +22,10 @@ namespace FMS.Web.ViewModels.Identity
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+       
+        public List<SelectListItem> AccountTypes { get; set; }
+
+        public string AccountType { get; set; }
     }
 }

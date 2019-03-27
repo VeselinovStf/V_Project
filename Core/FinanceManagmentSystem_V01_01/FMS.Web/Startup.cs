@@ -1,5 +1,6 @@
 ﻿using FMS.Data.Core;
 using FMS.Data.Identity;
+using FMS.RoleService.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +42,7 @@ namespace FMS.Web
         private void ConfigureApplicationServicess(IServiceCollection services)
         {
             // Add new App servicess
-            // services.AddScoped<IAbstraction, Implementation>();
+            services.AddScoped<IRoleService, RoleService.RoleService>();
         }
 
         private void ConfigureMvcSettings(IServiceCollection services)

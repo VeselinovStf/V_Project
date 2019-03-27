@@ -1,10 +1,14 @@
 ﻿using FMS.Data.Identity;
+using FMS.RoleService.Abstract;
+using FMS.Web.Models;
 using FMS.Web.ViewModels.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FMS.Web.Controllers
@@ -14,16 +18,19 @@ namespace FMS.Web.Controllers
         private readonly SignInManager<FMSIdentityUser> _signInManager;
         private readonly UserManager<FMSIdentityUser> _userManager;
         private readonly ILogger<AccountController> _logger;
+        private readonly IRoleService _roleService;
 
         public AccountController(
             UserManager<FMSIdentityUser> userManager,
             SignInManager<FMSIdentityUser> signInManager,
-            ILogger<AccountController> logger
+            ILogger<AccountController> logger,
+            IRoleService roleService
            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _roleService = roleService;
         }
 
         [AllowAnonymous]
@@ -32,7 +39,18 @@ namespace FMS.Web.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
-            return View();
+            var roles = this._roleService.GetAllPublicRoles();
+
+            var model = new RegisterViewModel();
+            model.AccountTypes = new List<SelectListItem>();
+
+            foreach (var role in roles)
+            {
+                model.AccountTypes.Add(new SelectListItem() { Text = role });
+            }
+           
+
+            return View(model);
         }
 
         [AllowAnonymous]
@@ -45,6 +63,9 @@ namespace FMS.Web.Controllers
             {
                 var user = new FMSIdentityUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+
+                await _roleService.AddToRole(user, model.AccountType);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -102,6 +123,7 @@ namespace FMS.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
 
         public async Task<IActionResult> Logout(string returnUrl = null)
         {

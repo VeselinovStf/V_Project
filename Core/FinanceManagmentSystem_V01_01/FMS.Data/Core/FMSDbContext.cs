@@ -1,4 +1,5 @@
-﻿using FMS.Data.Identity;
+﻿using FMS.BuildInRolesEnum;
+using FMS.Data.Identity;
 using FMS.Models.Abstract;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -80,10 +81,52 @@ namespace FMS.Data.Core
 
         private IdentityRole[] SeedDefaultRoles()
         {
-            var administrator = new IdentityRole() { Id = "1", Name = "Administrator", NormalizedName = "ADMINISTRATOR" };
-            //var player = new IdentityRole() { Id = "2", Name = "Personal", NormalizedName = "Personal" };
+            var administrator = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.Administrator).ToString(),
+                Name = BuildInRoles.Administrator.ToString() ,
+                NormalizedName = BuildInRoles.Administrator.ToString().ToUpper()
+            };
 
-            return new IdentityRole[] { administrator };
+            var personalManagment = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.Personal).ToString(),
+                Name = BuildInRoles.Personal.ToString(),
+                NormalizedName = BuildInRoles.Personal.ToString().ToUpper()
+            };
+
+            var estateOwnerManagment = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.EstateOwner).ToString(),
+                Name = BuildInRoles.EstateOwner.ToString(),
+                NormalizedName = BuildInRoles.EstateOwner.ToString().ToUpper()
+            };
+
+            var estateAgentManagment = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.EstateAgent).ToString(),
+                Name = BuildInRoles.EstateAgent.ToString(),
+                NormalizedName = BuildInRoles.EstateAgent.ToString().ToUpper()
+            };
+
+            var flatManagment = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.FlatManagment).ToString(),
+                Name = BuildInRoles.FlatManagment.ToString(),
+                NormalizedName = BuildInRoles.FlatManagment.ToString().ToUpper()
+            };
+
+            var simple = new IdentityRole()
+            {
+                Id = ((int)BuildInRoles.Simple).ToString(),
+                Name = BuildInRoles.Simple.ToString(),
+                NormalizedName = BuildInRoles.Simple.ToString().ToUpper()
+            };
+
+            return new IdentityRole[] {
+                administrator , personalManagment ,
+                estateOwnerManagment , estateAgentManagment ,
+                flatManagment, simple};
         }
 
         private void SeedDefaultAdmin(ModelBuilder builder)
