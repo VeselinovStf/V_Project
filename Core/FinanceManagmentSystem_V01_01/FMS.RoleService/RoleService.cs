@@ -1,6 +1,7 @@
 ﻿using FMS.BuildInRolesEnum;
 using FMS.Data.Core;
 using FMS.IdentityModelUser;
+using FMS.Models.Abstract;
 using FMS.Models.UsersTypes;
 using FMS.RoleService.Abstract;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,9 @@ namespace FMS.RoleService
         private readonly UserManager<FMSIdentityUser> userManager;
         private readonly FMSDbContext dbContext;
 
+        private static Dictionary<BuildInRoles, IUserCreationStrategy<FMSIdentityUser>> _strategies =
+            new Dictionary<BuildInRoles, IUserCreationStrategy<FMSIdentityUser>>();
+
         private List<BuildInRoles> BuildInRolesSet { get;}
 
         public RoleService(UserManager<FMSIdentityUser> userManager, FMSDbContext dbContext)
@@ -29,6 +33,16 @@ namespace FMS.RoleService
             BuildInRolesSet.Add(BuildInRoles.EstateOwner);
             BuildInRolesSet.Add(BuildInRoles.FlatManagment);
             BuildInRolesSet.Add(BuildInRoles.Simple);
+
+            if (!_strategies.ContainsKey(BuildInRoles.Personal))
+            {
+                _strategies.Add(BuildInRoles.Personal, new PersonalUser());
+                // _strategies.Add(BuildInRoles.EstateAgent, new EstateAgentUser());
+                _strategies.Add(BuildInRoles.EstateOwner, new EstateOwnerUser());
+                //  _strategies.Add(BuildInRoles.FlatManagment, new FlatManagmentUser());
+                // _strategies.Add(BuildInRoles.Simple, new SimpleUser());
+            }
+
 
             this.userManager = userManager;
             this.dbContext = dbContext;
@@ -62,8 +76,9 @@ namespace FMS.RoleService
 
         public async Task<FMSIdentityUser> CreateUserInRole(string email, string password, string role)
         {
+            var roleEnum = (BuildInRoles)Enum.Parse(typeof(BuildInRoles), role, true);
 
-            var user = await CreateUser(email, password, role);
+            var user = _strategies[roleEnum].Create(email, password);
 
             //var result = await userManager.CreateAsync(user, password);
 
@@ -76,29 +91,6 @@ namespace FMS.RoleService
 
             return null; 
         }
-
-        private async Task<FMSIdentityUser> CreateUser(string email, string password, string role)
-        {
-            FMSIdentityUser user;
-
-            switch (role)
-            {
-                case "Personal":
-                    user = new PersonalUser() { UserName = email, Email = email , SecurityStamp = Guid.NewGuid().ToString()};
-                    this.dbContext.PersonalUsers.Add(user as PersonalUser);
-                    await this.dbContext.SaveChangesAsync();
-                    return user;                   
-                case "EstateOwner":
-                    user = new EstateOwnerUser() { UserName = email, Email = email, SecurityStamp = Guid.NewGuid().ToString() };
-                    this.dbContext.EstateOwnerUsers.Add(user as EstateOwnerUser);
-                    await this.dbContext.SaveChangesAsync();
-                    return user;
-                default:
-                    return new FMSIdentityUser() { UserName = email, Email = email };
-
-            }
-
-          
-        }
+      
     }
 }
