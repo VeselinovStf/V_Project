@@ -81,8 +81,6 @@ namespace FMS.RoleService
         {
             FMSIdentityUser user;
 
-            var usersMaika = this.dbContext.PersonalUsers.ToList();
-
             switch (role)
             {
                 case "Personal":
