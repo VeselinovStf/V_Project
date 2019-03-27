@@ -4,14 +4,16 @@ using FMS.Data.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FMS.Data.Migrations
 {
     [DbContext(typeof(FMSDbContext))]
-    partial class CoreIdentityTemplateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190327062027_Initial Managment Core And Identity")]
+    partial class InitialManagmentCoreAndIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
