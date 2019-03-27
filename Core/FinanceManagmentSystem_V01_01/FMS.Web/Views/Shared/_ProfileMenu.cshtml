@@ -1,0 +1,12 @@
+﻿<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Edit your profile</p>
+<div class="row profile">
+    <nav class="col-sm-3" id="myScrollspy">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a asp-action="Index" asp-controller="Manage">Change Personal Data</a></li>
+            <li><a asp-action="ChangePassword" asp-controller="Manage">Change Password</a></li>
+            <li><a asp-action="PersonalData" asp-controller="Manage">Download Personal Data</a></li>
+        </ul>
+    </nav>
