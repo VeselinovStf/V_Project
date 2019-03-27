@@ -1,4 +1,5 @@
-﻿using FMS.Data.Identity;
+﻿
+using FMS.IdentityModelUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;

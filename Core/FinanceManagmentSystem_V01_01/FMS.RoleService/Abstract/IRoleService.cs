@@ -1,4 +1,5 @@
-﻿using FMS.Data.Identity;
+﻿
+using FMS.IdentityModelUser;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -13,6 +14,6 @@ namespace FMS.RoleService.Abstract
 
         Task<bool> GotRole(ClaimsPrincipal claimsPrincipal, string searchRole);
 
-        Task AddToRole(FMSIdentityUser user, string role);
+        Task<FMSIdentityUser> CreateUserInRole(string email, string password, string role);
     }
 }

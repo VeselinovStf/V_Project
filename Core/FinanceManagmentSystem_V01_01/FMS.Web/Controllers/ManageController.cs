@@ -1,5 +1,6 @@
 ﻿
-using FMS.Data.Identity;
+
+using FMS.IdentityModelUser;
 using FMS.Web.ViewModels.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

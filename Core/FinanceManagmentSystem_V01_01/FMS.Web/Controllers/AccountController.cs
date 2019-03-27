@@ -1,4 +1,5 @@
-﻿using FMS.Data.Identity;
+﻿
+using FMS.IdentityModelUser;
 using FMS.RoleService.Abstract;
 using FMS.Web.Models;
 using FMS.Web.ViewModels.Identity;
@@ -61,20 +62,18 @@ namespace FMS.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new FMSIdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await this._roleService
+                    .CreateUserInRole(model.Email, model.Password, model.AccountType);
 
-                await _roleService.AddToRole(user, model.AccountType);
-
-                if (result.Succeeded)
+                if (result != null)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(result, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
 
-                AddError(result);
+                //AddError(result);
             }
 
             // If we got this far, something failed, redisplay form

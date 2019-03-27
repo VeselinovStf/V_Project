@@ -1,5 +1,6 @@
 ﻿using FMS.Data.Core;
-using FMS.Data.Identity;
+
+using FMS.IdentityModelUser;
 using FMS.RoleService.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

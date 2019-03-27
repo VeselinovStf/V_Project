@@ -1,6 +1,9 @@
 ﻿using FMS.BuildInRolesEnum;
-using FMS.Data.Identity;
+using FMS.Data.Config;
+using FMS.IdentityModelUser;
 using FMS.Models.Abstract;
+using FMS.Models.Entities;
+using FMS.Models.UsersTypes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +16,11 @@ namespace FMS.Data.Core
 {
     public class FMSDbContext : IdentityDbContext<FMSIdentityUser>
     {
+        public DbSet<PersonalUser> PersonalUsers { get; set; }
+        public DbSet<EstateOwnerUser> EstateOwnerUsers { get; set; }
+        public DbSet<Bill> Bills { get; set; }
+        public DbSet<Estate> Estates { get; set; }
+
         public FMSDbContext(DbContextOptions<FMSDbContext> options)
             : base(options)
         {
@@ -76,7 +84,8 @@ namespace FMS.Data.Core
 
         private void ApplyModelConfigurations(ModelBuilder builder)
         {
-            
+            builder.ApplyConfiguration(new EstateConfig());
+            builder.ApplyConfiguration(new BillConfig());
         }
 
         private IdentityRole[] SeedDefaultRoles()

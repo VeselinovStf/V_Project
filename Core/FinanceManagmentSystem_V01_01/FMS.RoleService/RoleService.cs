@@ -1,5 +1,7 @@
 ﻿using FMS.BuildInRolesEnum;
-using FMS.Data.Identity;
+using FMS.Data.Core;
+using FMS.IdentityModelUser;
+using FMS.Models.UsersTypes;
 using FMS.RoleService.Abstract;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -13,10 +15,11 @@ namespace FMS.RoleService
     public class RoleService : IRoleService
     {
         private readonly UserManager<FMSIdentityUser> userManager;
+        private readonly FMSDbContext dbContext;
 
         private List<BuildInRoles> BuildInRolesSet { get;}
 
-        public RoleService(UserManager<FMSIdentityUser> userManager)
+        public RoleService(UserManager<FMSIdentityUser> userManager, FMSDbContext dbContext)
         {
             this.BuildInRolesSet = new List<BuildInRoles>();
 
@@ -28,6 +31,7 @@ namespace FMS.RoleService
             BuildInRolesSet.Add(BuildInRoles.Simple);
 
             this.userManager = userManager;
+            this.dbContext = dbContext;
         }
 
         public List<string> GetAllPublicRoles()
@@ -56,9 +60,47 @@ namespace FMS.RoleService
             return false;
         }
 
-        public async Task AddToRole(FMSIdentityUser user, string role)
+        public async Task<FMSIdentityUser> CreateUserInRole(string email, string password, string role)
         {
-           await this.userManager.AddToRoleAsync(user, role);
+
+            var user = await CreateUser(email, password, role);
+
+            //var result = await userManager.CreateAsync(user, password);
+
+            await this.userManager.AddToRoleAsync(user, role);
+
+            if (user != null)
+            {
+                return user;
+            }
+
+            return null; 
+        }
+
+        private async Task<FMSIdentityUser> CreateUser(string email, string password, string role)
+        {
+            FMSIdentityUser user;
+
+            var usersMaika = this.dbContext.PersonalUsers.ToList();
+
+            switch (role)
+            {
+                case "Personal":
+                    user = new PersonalUser() { UserName = email, Email = email , SecurityStamp = Guid.NewGuid().ToString()};
+                    this.dbContext.PersonalUsers.Add(user as PersonalUser);
+                    await this.dbContext.SaveChangesAsync();
+                    return user;                   
+                case "EstateOwner":
+                    user = new EstateOwnerUser() { UserName = email, Email = email, SecurityStamp = Guid.NewGuid().ToString() };
+                    this.dbContext.EstateOwnerUsers.Add(user as EstateOwnerUser);
+                    await this.dbContext.SaveChangesAsync();
+                    return user;
+                default:
+                    return new FMSIdentityUser() { UserName = email, Email = email };
+
+            }
+
+          
         }
     }
 }

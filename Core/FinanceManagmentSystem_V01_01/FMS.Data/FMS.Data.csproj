@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FMS.BuildInRolesEnum\FMS.BuildInRolesEnum.csproj" />
+    <ProjectReference Include="..\FMS.IdentityModelUser\FMS.IdentityModelUser.csproj" />
     <ProjectReference Include="..\FMS.Models\FMS.Models.csproj" />
   </ItemGroup>
 
